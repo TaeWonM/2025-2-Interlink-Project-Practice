@@ -1,0 +1,86 @@
+{
+    "version": 1,
+    "name": "KeyBoard Actions",
+    "maps": [
+        {
+            "name": "Keyboard",
+            "id": "7545f6d6-f388-42b1-91f0-4d7a2cc63a66",
+            "actions": [
+                {
+                    "name": "Setting",
+                    "type": "Button",
+                    "id": "2853e103-83d5-4830-9936-ac834a44408e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e039e11f-6277-4226-bd6e-2bf6ed1ce0a2",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Setting",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Mouse",
+            "id": "3930f483-c013-4381-a589-83486de835f9",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "73ce6088-706b-4277-9b67-0f3b4627957e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "21b964f6-874e-4428-821d-38c406611105",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "New Control Scheme",
+            "bindingGroup": "New Control Scheme",
+            "devices": [
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "New Control Scheme1",
+            "bindingGroup": "New Control Scheme1",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}

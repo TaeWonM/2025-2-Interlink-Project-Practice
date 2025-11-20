@@ -11,7 +11,7 @@ public class UdpReceiver : MonoBehaviour
     public int port = 5005; // Python 서버의 포트와 일치해야 함
     public string lastReceivedData = "";
 
-    void Start()
+    void OnEnable()
     {
         receiveThread = new Thread(new ThreadStart(ReceiveData));
         receiveThread.IsBackground = true;
@@ -38,7 +38,7 @@ public class UdpReceiver : MonoBehaviour
         }
     }
 
-    void OnApplicationQuit()
+    void OnDisable()
     {
         if (receiveThread != null)
         {
@@ -48,5 +48,9 @@ public class UdpReceiver : MonoBehaviour
         {
             client.Close();
         }
+    }
+    void OnApplicationQuit()
+    {
+        OnDisable();
     }
 }

@@ -17,7 +17,7 @@ public class ProcessLauncher : MonoBehaviour
     // Python 파일이 Unity Assets 폴더 아래의 'PythonServer' 폴더에 있다고 가정
     private string scriptDirectory = "PythonServer";
 
-    void Start()
+    void OnEnable()
     {
         StartPythonServer();
     }
@@ -38,9 +38,9 @@ public class ProcessLauncher : MonoBehaviour
 
         pythonProcess = new Process();
         pythonProcess.StartInfo.FileName = pythonExecutable;
-        pythonProcess.StartInfo.RedirectStandardError = true;
-        pythonProcess.StartInfo.RedirectStandardInput = true;
-        pythonProcess.StartInfo.RedirectStandardOutput = true;
+        pythonProcess.StartInfo.RedirectStandardError = false;
+        pythonProcess.StartInfo.RedirectStandardInput = false;
+        pythonProcess.StartInfo.RedirectStandardOutput = false;
 
         // 인수는 'python [스크립트 경로]' 형식이 됩니다.
         pythonProcess.StartInfo.Arguments = fullScriptPath;
@@ -66,6 +66,11 @@ public class ProcessLauncher : MonoBehaviour
     {
         StopPythonServer();
     }
+    void OnDisable()
+    {
+        StopPythonServer();
+    }
+
 
     void StopPythonServer()
     {

@@ -18,7 +18,7 @@ namespace Cameras
             if (cameras.ContainsKey(from) && cameras.ContainsKey(to))
             {
                 cameras[from].gameObject.SetActive(false);
-                AddComponent(cameras[from]);
+                AddComponent(cameras[to]);
                 cameras[to].gameObject.SetActive(true);
             }
             else

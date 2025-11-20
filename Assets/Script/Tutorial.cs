@@ -16,7 +16,6 @@ public class Tutorial : MonoBehaviour
     private Image Phone_Camera_Icon;
     private Image Phone_Email_Icon;
     private Image Phone_Call_Icon;
-    private NewActions action;
     private Material matInstance;
     private Camera Tutorial_Cammera;
     private bool is_Phone_On = false;

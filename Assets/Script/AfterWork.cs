@@ -19,11 +19,16 @@ public class AfterWork : MonoBehaviour
         Hand.material = null;
         matInstance = Resources.Load<Material>("New Material");
         AfterWork_Camera = GetComponentInChildren<Camera>(true);
+        Cameras.CameraDict.cameras.Add("AfterWork", AfterWork_Camera);
     }
 
     void Update()
     {
-        if (AfterWork_Camera != null) highlight();
+        if (AfterWork_Camera.gameObject.activeSelf)
+        {
+            if (!Hand.gameObject.activeSelf) componentSetActive(true);
+            highlight();
+        }
     }
     void highlight()
     {
@@ -36,5 +41,14 @@ public class AfterWork : MonoBehaviour
         {
             Hand.material = null;
         }
+    }
+    public void OnHandClick()
+    {
+        componentSetActive(false);
+        Cameras.CameraDict.SwitchCamera("AfterWork", "Tutorial");
+    }
+    void componentSetActive(bool active)
+    {
+        Hand.gameObject.SetActive(active);
     }
 }
