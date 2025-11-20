@@ -1,3 +1,4 @@
+using Cameras;
 using UnityEngine;
 
 public class CursorTracker : MonoBehaviour
@@ -52,12 +53,11 @@ public class CursorTracker : MonoBehaviour
                     // 1. Raw Data (0~1 범위)를 픽셀 좌표로 변환
                     // MediaPipe Y축은 위에서 아래로 증가할 수 있으므로 Y좌표를 반전시켜야 할 수 있습니다.
                     float targetX = rawX * screenWidth;
-                    float targetY = (1f - rawY) * screenHeight; // Y축 반전 (유니티 화면 좌표계에 맞춤)
-
+                    float targetY = (1f - rawY) * screenHeight; // Y축 반전 (유니티 화면 좌표계에 맞춤
                     // 2. 3D 월드 좌표로 변환 (World Space Cursor의 경우)
                     // 커서가 캔버스 UI가 아닌 3D 월드에서 움직여야 한다면:
-                    Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(targetX, targetY, sensitivity));
-
+                    Vector3 worldPos = CameraDict.Curcameras.ScreenToWorldPoint(new Vector3(targetX, targetY, sensitivity));
+                    Debug.Log(worldPos);
                     // Z축을 카메라 앞에 고정 (sensitivity 값은 깊이 값)
                     worldPos.z = transform.position.z;
 

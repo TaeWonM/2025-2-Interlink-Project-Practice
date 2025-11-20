@@ -108,9 +108,8 @@ public class Tutorial : MonoBehaviour
     }
     public void OnClickTV()
     {
-        Tutorial_Cammera.gameObject.SetActive(false);
         componentSetActive(false);
-        CameraDict.cameras["OnCommute"].gameObject.SetActive(true);
+        CameraDict.SwitchCamera("Tutorial", "OnCommute");
     }
     void componentSetActive(bool active)
     {

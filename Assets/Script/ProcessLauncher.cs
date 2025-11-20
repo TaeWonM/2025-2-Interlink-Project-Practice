@@ -1,6 +1,8 @@
-using UnityEngine;
 using System.Diagnostics; // 프로세스 관리를 위해 필요
 using System.IO;
+using System.Security.Cryptography;
+using UnityEditor.PackageManager.UI;
+using UnityEngine;
 
 public class ProcessLauncher : MonoBehaviour
 {
@@ -26,16 +28,19 @@ public class ProcessLauncher : MonoBehaviour
 
         // Unity의 DataPath 내에 있는 스크립트의 전체 경로를 만듭니다.
         // 예: [UnityProject]/Assets/PythonServer/mediapipe_udp_server.py
-        string fullScriptPath = Path.Combine(Application.dataPath, scriptDirectory, scriptFileName);
-
+        string fullScriptPath = System.IO.Path.Combine(Application.dataPath, scriptDirectory, scriptFileName).Replace('\\', '/');
         if (!File.Exists(fullScriptPath))
         {
             UnityEngine.Debug.LogError("Python 스크립트 파일을 찾을 수 없습니다: " + fullScriptPath);
             return;
         }
+        fullScriptPath = string.Format("\"{0}\"", System.IO.Path.Combine(Application.dataPath, scriptDirectory, scriptFileName));
 
         pythonProcess = new Process();
         pythonProcess.StartInfo.FileName = pythonExecutable;
+        pythonProcess.StartInfo.RedirectStandardError = true;
+        pythonProcess.StartInfo.RedirectStandardInput = true;
+        pythonProcess.StartInfo.RedirectStandardOutput = true;
 
         // 인수는 'python [스크립트 경로]' 형식이 됩니다.
         pythonProcess.StartInfo.Arguments = fullScriptPath;
@@ -46,8 +51,8 @@ public class ProcessLauncher : MonoBehaviour
 
         try
         {
-            pythonProcess.Start();
-            UnityEngine.Debug.Log("Python 서버 프로세스 시작 성공.");
+            bool flag = pythonProcess.Start();
+            UnityEngine.Debug.Log(flag + "Python 서버 프로세스 시작 성공.");
         }
         catch (System.Exception e)
         {
