@@ -9,12 +9,12 @@ public class Main : MonoBehaviour
         Main_Camera = GetComponentInChildren<Camera>(true);
         if (Main_Camera == null) Debug.Log("Null point in Main_Camera");
         CameraDict.cameras.Add("Main", Main_Camera);
+        CameraDict.AddComponent(Main_Camera);
     }
 
     // Update is called once per frame
     public void OnClicked()
     {
-        Main_Camera.gameObject.SetActive(false);
-        CameraDict.cameras["Tutorial"].gameObject.SetActive(true);
+        CameraDict.SwitchCamera("Main", "Tutorial");
     }
 }
